@@ -7,8 +7,6 @@
   
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-  <script src="/_sdk/element_sdk.js"></script>
-  <script src="/_sdk/data_sdk.js"></script>
   
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   
@@ -25,15 +23,12 @@
     .nav-glass { background: rgba(15, 15, 26, 0.85); backdrop-filter: blur(12px); }
     .section-dark { background: #0f0f1a; }
     .section-alt { background: #1a1a2e; }
-    .tag { display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
     .barcode-bg { background-color: #fff; padding: 2px; border-radius: 2px; }
 
     @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     .animate-fade-up { animation: fadeUp 0.7s ease forwards; }
     .delay-1 { animation-delay: 0.1s; opacity: 0; }
     .delay-2 { animation-delay: 0.25s; opacity: 0; }
-    .delay-3 { animation-delay: 0.4s; opacity: 0; }
-    .delay-4 { animation-delay: 0.55s; opacity: 0; }
   </style>
 </head>
 
@@ -42,7 +37,7 @@
   <nav class="nav-glass fixed top-0 left-0 w-full z-50 px-6 py-4 flex items-center justify-between border-b border-white/5">
     <div class="flex items-center gap-2">
       <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-orange-500 to-yellow-400 flex items-center justify-center font-bold text-black text-sm">P</div>
-      <span id="nav-brand" class="font-bold text-lg tracking-tight uppercase">PEXAVIEW</span>
+      <span class="font-bold text-lg tracking-tight uppercase">PEXAVIEW</span>
     </div>
     <div class="hidden md:flex gap-8 font-mono text-sm text-gray-400">
       <a href="#inicio" class="hover:text-orange-400 transition">Inicio</a>
@@ -50,172 +45,104 @@
       <a href="#servicios" class="hover:text-orange-400 transition">Servicios</a>
       <a href="#contacto" class="hover:text-orange-400 transition">Contacto</a>
     </div>
-    <button id="mobile-menu-btn" class="md:hidden text-gray-400">
-      <i data-lucide="menu" class="w-6 h-6"></i>
-    </button>
   </nav>
-
-  <div id="mobile-menu" class="fixed inset-0 z-[60] bg-black/95 hidden flex-col items-center justify-center gap-8 font-mono text-xl text-gray-300">
-    <a href="#inicio" class="hover:text-orange-400" onclick="closeMobileMenu()">Inicio</a>
-    <a href="#portafolio" class="hover:text-orange-400" onclick="closeMobileMenu()">Portafolio</a>
-    <a href="#servicios" class="hover:text-orange-400" onclick="closeMobileMenu()">Servicios</a>
-    <a href="#contacto" class="hover:text-orange-400" onclick="closeMobileMenu()">Contacto</a>
-    <button onclick="closeMobileMenu()" class="mt-4 text-gray-500"><i data-lucide="x" class="w-8 h-8"></i></button>
-  </div>
 
   <section id="inicio" class="hero-bg w-full min-h-screen flex items-center justify-center px-6 pt-20 relative overflow-hidden">
     <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22><rect fill=%22none%22 stroke=%22%23ff6b35%22 stroke-width=%220.5%22 width=%2260%22 height=%2260%22/></svg>');"></div>
     <div class="text-center relative z-10 w-full">
       <p class="animate-fade-up delay-1 font-mono text-orange-400 text-sm tracking-widest uppercase mb-4">Diseño Visual & Advertising</p>
-      <h1 id="hero-title" class="animate-fade-up delay-2 text-6xl md:text-8xl font-extrabold gradient-text leading-tight mb-6">PEXAVIEW</h1>
-      <p id="hero-subtitle" class="animate-fade-up delay-3 text-xl md:text-2xl text-gray-400 font-light max-w-2xl mx-auto mb-10">Flyers, logos y videos publicitarios diseñados para elevar tu marca al siguiente nivel.</p>
-      <div class="animate-fade-up delay-4 flex gap-4 justify-center flex-wrap">
+      <h1 class="animate-fade-up delay-2 text-6xl md:text-8xl font-extrabold gradient-text leading-tight mb-6 uppercase">PEXAVIEW</h1>
+      <p class="animate-fade-up text-xl md:text-2xl text-gray-400 font-light max-w-2xl mx-auto mb-10">Flyers, logos y videos publicitarios para elevar tu marca.</p>
+      <div class="animate-fade-up flex gap-4 justify-center flex-wrap">
         <a href="#portafolio" class="px-8 py-3 bg-gradient-to-r from-orange-500 to-yellow-500 text-black font-bold rounded-full hover:scale-105 transition-transform">Ver Portafolio</a>
-        <a href="https://wa.me/584166964264" target="_blank" class="px-8 py-3 border border-white/20 rounded-full text-gray-300 hover:border-orange-400 hover:text-orange-400 transition flex items-center gap-2">
-          <i data-lucide="phone" class="w-4 h-4"></i> WhatsApp
-        </a>
+        <a href="https://wa.me/584166964264" target="_blank" class="px-8 py-3 border border-white/20 rounded-full text-gray-300 hover:border-orange-400 transition flex items-center gap-2">WhatsApp</a>
       </div>
     </div>
   </section>
 
   <section id="portafolio" class="section-dark w-full py-24 px-6">
-    <div class="w-full px-4">
-      <div class="text-center mb-12">
-        <p class="font-mono text-orange-400 text-sm uppercase tracking-widest mb-3">Portafolio</p>
-        <h2 class="text-3xl md:text-4xl font-bold">Catálogo de <span class="gradient-text">Trabajos</span></h2>
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold">Catálogo de <span class="gradient-text">Trabajos</span></h2>
+      <div class="flex justify-center gap-3 mt-8 flex-wrap">
+        <button onclick="renderAll()" class="filter-btn px-5 py-2 rounded-full font-mono text-sm border border-orange-400 text-orange-400 bg-orange-400/10">Todos</button>
       </div>
-      
-      <div class="flex justify-center gap-3 mb-10 flex-wrap">
-        <button onclick="filterWork('all', this)" class="filter-btn px-5 py-2 rounded-full font-mono text-sm border border-orange-400 text-orange-400 bg-orange-400/10">Todos</button>
-        <button onclick="filterWork('flyer', this)" class="filter-btn px-5 py-2 rounded-full font-mono text-sm border border-white/20 text-gray-400 hover:border-orange-400 hover:text-orange-400 transition">Flyers (5$)</button>
-        <button onclick="filterWork('video', this)" class="filter-btn px-5 py-2 rounded-full font-mono text-sm border border-white/20 text-gray-400 hover:border-orange-400 hover:text-orange-400 transition">Publicidad (8$)</button>
-        <button onclick="filterWork('logo', this)" class="filter-btn px-5 py-2 rounded-full font-mono text-sm border border-white/20 text-gray-400 hover:border-orange-400 hover:text-orange-400 transition">Logos (5$)</button>
-      </div>
-
-      <div id="portfolio-grid" class="grid-portfolio"></div>
     </div>
+    <div id="portfolio-grid" class="grid-portfolio max-w-7xl mx-auto">
+      </div>
   </section>
 
-  <section id="servicios" class="section-alt w-full py-24 px-6">
-    <div class="w-full text-center mb-12">
-      <p class="font-mono text-orange-400 text-sm uppercase tracking-widest mb-3">Servicios</p>
-      <h2 class="text-3xl md:text-4xl font-bold">Tarifas <span class="gradient-text">Fijas</span></h2>
-    </div>
-    <div class="grid md:grid-cols-3 gap-6 w-full max-w-7xl mx-auto">
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-8 card-hover text-center">
-        <div class="w-12 h-12 mx-auto rounded-xl bg-orange-500/20 flex items-center justify-center mb-5"><i data-lucide="image" class="w-6 h-6 text-orange-400"></i></div>
-        <h3 class="font-bold text-xl mb-1">Flyers</h3>
-        <div class="text-2xl font-bold text-orange-400 mb-3">5$</div>
-        <p class="text-gray-500 text-sm leading-relaxed">Diseños de alto impacto para eventos y redes sociales.</p>
-      </div>
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-8 card-hover text-center">
-        <div class="w-12 h-12 mx-auto rounded-xl bg-orange-500/20 flex items-center justify-center mb-5"><i data-lucide="play-circle" class="w-6 h-6 text-orange-400"></i></div>
-        <h3 class="font-bold text-xl mb-1">Video Publicitario</h3>
-        <div class="text-2xl font-bold text-orange-400 mb-3">8$</div>
-        <p class="text-gray-500 text-sm leading-relaxed">Videos dinámicos para promocionar productos o marcas.</p>
-      </div>
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-8 card-hover text-center">
-        <div class="w-12 h-12 mx-auto rounded-xl bg-orange-500/20 flex items-center justify-center mb-5"><i data-lucide="palette" class="w-6 h-6 text-orange-400"></i></div>
-        <h3 class="font-bold text-xl mb-1">Logos</h3>
-        <div class="text-2xl font-bold text-orange-400 mb-3">5$</div>
-        <p class="text-gray-500 text-sm leading-relaxed">Identidad visual única y profesional para tu negocio.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="contacto" class="section-dark w-full py-24 px-6">
-    <div class="max-w-2xl mx-auto text-center">
-      <p class="font-mono text-orange-400 text-sm uppercase tracking-widest mb-3">Contacto</p>
-      <h2 class="text-3xl md:text-4xl font-bold mb-4">¿Listo para <span class="gradient-text">empezar</span>?</h2>
-      <p class="text-gray-500 mb-10">Haz clic en el botón de abajo para escribirme directamente por WhatsApp.</p>
-      
-      <a href="https://wa.me/584166964264" target="_blank" class="inline-flex items-center gap-3 px-10 py-5 bg-[#25D366] text-white font-bold rounded-2xl hover:scale-105 transition-transform text-lg shadow-xl shadow-green-500/20">
-        <i data-lucide="message-circle" class="w-6 h-6"></i>
-        Escribir por WhatsApp
-      </a>
-    </div>
-  </section>
-
-  <footer class="w-full py-8 px-6 border-t border-white/5 text-center">
-    <p class="font-mono text-gray-600 text-sm">© 2024 Pexaview — WhatsApp: +58 416-6964264</p>
+  <footer class="w-full py-8 px-6 border-t border-white/5 text-center section-dark">
+    <p class="font-mono text-gray-600 text-sm">© 2026 Pexaview — WhatsApp: +58 416-6964264</p>
   </footer>
 
   <script>
-    const WHATSAPP_NUMBER = "584166964264";
+    const WHATSAPP = "584166964264";
 
-    const portfolioItems = [
-      { id: "FL-101", title: "Neon Party", type: "flyer", color: "from-purple-600 to-pink-500", icon: "zap", price: 5 },
-      { id: "FL-102", title: "Summer Fest", type: "flyer", color: "from-orange-500 to-yellow-400", icon: "sun", price: 5 },
-      { id: "VD-201", title: "Promo Calzado", type: "video", color: "from-blue-600 to-cyan-400", icon: "play-circle", price: 8 },
-      { id: "LG-301", title: "Minimal Logo", type: "logo", color: "from-emerald-500 to-teal-400", icon: "box", price: 5 },
-      { id: "VD-202", title: "Food Cinematic", type: "video", color: "from-red-500 to-orange-400", icon: "film", price: 8 },
-      { id: "LG-302", title: "Tech Branding", type: "logo", color: "from-indigo-500 to-purple-400", icon: "cpu", price: 5 },
-    ];
-
-    function generateWhatsAppLink(item) {
-      const message = Hola Pexaview! Me interesa un diseño:%0A%0A📌 Tipo: ${item.type.toUpperCase()}%0A🏷️ Nombre: ${item.title}%0A🔢 Código: ${item.id}%0A💰 Precio: ${item.price}$%0A%0A¿Podemos empezar?;
-      return https://wa.me/${WHATSAPP_NUMBER}?text=${message};
+    async function loadData(file) {
+      try {
+        const response = await fetch(/data/${file}.json);
+        return await response.json();
+      } catch (e) { return []; }
     }
 
-    function renderPortfolio(filter = 'all') {
+    async function renderAll() {
       const grid = document.getElementById('portfolio-grid');
-      const items = filter === 'all' ? portfolioItems : portfolioItems.filter(i => i.type === filter);
+      grid.innerHTML = '<p class="text-center col-span-full">Cargando trabajos...</p>';
       
-      grid.innerHTML = items.map(item => `
+      const flyers = await loadData('flyers');
+      const videos = await loadData('videos');
+      const logos = await loadData('logos');
+
+      let html = '';
+
+      // Render Flyers
+      flyers.forEach(item => {
+        html += createCard(item.title, item.image, 'Flyer', '5$', 'image');
+      });
+
+      // Render Videos
+      videos.forEach(item => {
+        html += createCard(item.title, item.video_file, 'Video', '8$', 'video');
+      });
+
+      // Render Logos
+      logos.forEach(item => {
+        html += createCard(item.client, item.logo_img, 'Logo', '5$', 'image');
+      });
+
+      grid.innerHTML = html || '<p class="text-center col-span-full text-gray-500">No hay contenido aún. Súbelo desde Pages CMS.</p>';
+      lucide.createIcons();
+    }
+
+    function createCard(title, media, type, price, mediaType) {
+      const waMsg = Hola Pexaview! Me interesa el servicio de ${type}: ${title};
+      const mediaHtml = mediaType === 'video' 
+        ? <video src="${media}" class="w-full h-full object-cover" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>
+        : <img src="${media}" class="w-full h-full object-cover" alt="${title}">;
+
+      return `
         <div class="card-hover bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col h-full animate-fade-up">
-          <div class="h-48 bg-gradient-to-br ${item.color} flex items-center justify-center relative">
-            <i data-lucide="${item.icon}" class="w-12 h-12 text-white/80"></i>
-            <div class="absolute top-3 right-3 bg-black/40 backdrop-blur-md px-3 py-1 rounded-lg text-xs font-mono">
-              ID: ${item.id}
+          <div class="h-52 bg-gray-800 relative">
+            ${mediaHtml}
+            <div class="absolute top-3 left-3 bg-black/60 backdrop-blur-md px-3 py-1 rounded-lg text-[10px] font-mono uppercase tracking-widest">
+              ${type}
             </div>
           </div>
           <div class="p-5 flex flex-col flex-grow">
             <div class="flex items-center justify-between mb-4">
-              <h3 class="font-bold">${item.title}</h3>
-              <span class="text-orange-400 font-bold font-mono">${item.price}$</span>
+              <h3 class="font-bold text-sm">${title}</h3>
+              <span class="text-orange-400 font-bold font-mono">${price}</span>
             </div>
-            
-            <div class="mt-auto space-y-4">
-              <div class="barcode-bg h-8 flex items-center justify-around overflow-hidden">
-                ${Array(20).fill(0).map(() => <div class="w-[${Math.random() * 3 + 1}px] h-full bg-black"></div>).join('')}
-              </div>
-              
-              <a href="${generateWhatsAppLink(item)}" target="_blank" class="w-full flex items-center justify-center gap-2 py-3 bg-white/10 hover:bg-orange-500 hover:text-black transition rounded-xl font-bold text-sm">
-                <i data-lucide="shopping-cart" class="w-4 h-4"></i>
-                Ordenar Ahora
-              </a>
-            </div>
+            <a href="https://wa.me/${WHATSAPP}?text=${encodeURIComponent(waMsg)}" target="_blank" 
+               class="mt-auto w-full flex items-center justify-center gap-2 py-3 bg-white/10 hover:bg-orange-500 hover:text-black transition rounded-xl font-bold text-sm">
+              <i data-lucide="shopping-cart" class="w-4 h-4"></i> Ordenar
+            </a>
           </div>
         </div>
-      `).join('');
-      lucide.createIcons();
+      `;
     }
 
-    function filterWork(type, btn) {
-      document.querySelectorAll('.filter-btn').forEach(b => {
-        b.classList.remove('border-orange-400', 'text-orange-400', 'bg-orange-400/10');
-        b.classList.add('border-white/20', 'text-gray-400');
-      });
-      btn.classList.add('border-orange-400', 'text-orange-400', 'bg-orange-400/10');
-      btn.classList.remove('border-white/20', 'text-gray-400');
-      renderPortfolio(type);
-    }
-
-    const btn = document.getElementById('mobile-menu-btn');
-    const menu = document.getElementById('mobile-menu');
-
-    btn.addEventListener('click', () => {
-      menu.classList.toggle('hidden');
-      menu.classList.toggle('flex');
-    });
-
-    function closeMobileMenu() {
-      menu.classList.add('hidden');
-      menu.classList.remove('flex');
-    }
-
-    renderPortfolio();
-    lucide.createIcons();
+    window.onload = renderAll;
   </script>
 </body>
 </html>
