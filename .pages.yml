@@ -1,0 +1,49 @@
+# Configuración completa: Flyers, Videos y Logos
+content:
+  - label: Mis Flyers
+    name: flyers
+    type: collection
+    path: data/flyers.json
+    format: json
+    fields:
+      - label: Título del Flyer
+        name: title
+        type: string
+      - label: Imagen
+        name: image
+        type: image
+        path: assets/flyers
+      - label: Descripción
+        name: description
+        type: text
+
+  - label: Mis Videos
+    name: videos
+    type: collection
+    path: data/videos.json
+    format: json
+    fields:
+      - label: Nombre del Video
+        name: title
+        type: string
+      - label: Archivo de Video
+        name: video_file
+        type: image
+        path: assets/videos
+      - label: Breve reseña
+        name: info
+        type: text
+
+  - label: Mis Logos
+    name: logos
+    type: collection
+    path: data/logos.json
+    format: json
+    fields:
+      - label: Nombre del Logo o Cliente
+        name: client
+        type: string
+      - label: Imagen del Logo
+        name: logo_img
+        type: image
+        path: assets/logos
