@@ -67,6 +67,7 @@
         <button onclick="renderAll()" class="filter-btn px-5 py-2 rounded-full font-mono text-sm border border-orange-400 text-orange-400 bg-orange-400/10">Todos</button>
       </div>
     </div>
+    
     <div id="portfolio-grid" class="grid-portfolio max-w-7xl mx-auto">
       </div>
   </section>
@@ -78,16 +79,21 @@
   <script>
     const WHATSAPP = "584166964264";
 
+    // Función para cargar los JSON que CloudCannon actualizará
     async function loadData(file) {
       try {
-        const response = await fetch(/data/${file}.json);
+        // Añadimos un parámetro de tiempo para que no use la caché y veas los cambios al instante
+        const response = await fetch(data/${file}.json?t=${new Date().getTime()});
         return await response.json();
-      } catch (e) { return []; }
+      } catch (e) { 
+        console.error("Error cargando " + file, e);
+        return []; 
+      }
     }
 
     async function renderAll() {
       const grid = document.getElementById('portfolio-grid');
-      grid.innerHTML = '<p class="text-center col-span-full">Cargando trabajos...</p>';
+      grid.innerHTML = '<p class="text-center col-span-full">Cargando portafolio...</p>';
       
       const flyers = await loadData('flyers');
       const videos = await loadData('videos');
@@ -96,29 +102,39 @@
       let html = '';
 
       // Render Flyers
-      flyers.forEach(item => {
-        html += createCard(item.title, item.image, 'Flyer', '5$', 'image');
-      });
+      if(flyers.length) {
+        flyers.forEach(item => {
+          html += createCard(item.title, item.image, 'Flyer', '5$', 'image');
+        });
+      }
 
       // Render Videos
-      videos.forEach(item => {
-        html += createCard(item.title, item.video_file, 'Video', '8$', 'video');
-      });
+      if(videos.length) {
+        videos.forEach(item => {
+          html += createCard(item.title, item.video_file, 'Video', '8$', 'video');
+        });
+      }
 
       // Render Logos
-      logos.forEach(item => {
-        html += createCard(item.client, item.logo_img, 'Logo', '5$', 'image');
-      });
+      if(logos.length) {
+        logos.forEach(item => {
+          html += createCard(item.client, item.logo_img, 'Logo', '5$', 'image');
+        });
+      }
 
-      grid.innerHTML = html || '<p class="text-center col-span-full text-gray-500">No hay contenido aún. Súbelo desde Pages CMS.</p>';
+      grid.innerHTML = html || '<p class="text-center col-span-full text-gray-500">Sube contenido a las carpetas en data/ para verlo aquí.</p>';
       lucide.createIcons();
     }
 
     function createCard(title, media, type, price, mediaType) {
       const waMsg = Hola Pexaview! Me interesa el servicio de ${type}: ${title};
+      
+      // Corregimos la ruta de la media para que siempre sea válida
+      const mediaSrc = media.startsWith('/') ? media : /${media};
+      
       const mediaHtml = mediaType === 'video' 
-        ? <video src="${media}" class="w-full h-full object-cover" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>
-        : <img src="${media}" class="w-full h-full object-cover" alt="${title}">;
+        ? <video src="${mediaSrc}" class="w-full h-full object-cover" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>
+        : <img src="${mediaSrc}" class="w-full h-full object-cover" alt="${title}">;
 
       return `
         <div class="card-hover bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col h-full animate-fade-up">
@@ -130,7 +146,7 @@
           </div>
           <div class="p-5 flex flex-col flex-grow">
             <div class="flex items-center justify-between mb-4">
-              <h3 class="font-bold text-sm">${title}</h3>
+              <h3 class="font-bold text-sm">${title || 'Sin título'}</h3>
               <span class="text-orange-400 font-bold font-mono">${price}</span>
             </div>
             <a href="https://wa.me/${WHATSAPP}?text=${encodeURIComponent(waMsg)}" target="_blank" 
