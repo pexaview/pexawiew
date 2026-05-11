@@ -12,7 +12,7 @@ content:
       - label: Imagen
         name: image
         type: image
-        path: /assets/flyers
+        path: / assets / flyers
       - label: Descripción
         name: description
         type: text
@@ -29,7 +29,7 @@ content:
       - label: Archivo de Video
         name: video_file
         type: image
-        path: /assets/videos
+        path: / assets / videos 
       - label: Breve reseña
         name: info
         type: text
@@ -46,4 +46,4 @@ content:
       - label: Imagen del Logo
         name: logo_img
         type: image
-        path: /assets/logos
+        path: / assets / logos
