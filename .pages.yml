@@ -1,4 +1,10 @@
 # Configuración completa: Flyers, Videos y Logos
+media_folder: assets/flyers
+public_folder: /assets/flyers
+
+content:
+  - label: Mis Flyers
+    # ... el resto de tu código igual ...
 content:
   - label: Mis Flyers
     name: flyers
