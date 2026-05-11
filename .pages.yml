@@ -29,7 +29,7 @@ content:
       - label: Archivo de Video
         name: video_file
         type: image
-        path: /assets/videos 
+        path: /assets/videos
       - label: Breve reseña
         name: info
         type: text
